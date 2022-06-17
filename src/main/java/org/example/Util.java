@@ -9,9 +9,9 @@ public class Util {
             this.driver = driver;
         }
         private final String url = "https://lennertamas.github.io/portio/index.html";
-        private final By termsBox = By.xpath("//*[@id=\"overlay\"]/div/div[2]/div/div[1]");
-        private final By acceptButton = By.xpath("//*[@id=\"terms-and-conditions-button\"]");
-        private final By loginBox = By.xpath("//*[@id=\"login\"]");
+        private final By termsBox = By.id("overlay");
+        private final By acceptButton = By.id("terms-and-conditions-button");
+        private final By loginBox = By.id("login");
 
 
     public void navigate() {

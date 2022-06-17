@@ -1,0 +1,7 @@
+a; b; c@d; 1st user
+Testuser; User; usergmail.com; Test user
+kismacska; Nagymacska; kismacska@gmail.com; A lot of cats
+alma; korte99; alma@osalma.hu; Fruits
+Cucumber; gUrke; gurke@freemail.de; See a dictionary
+Tomi; SUPER; Tomi@gmail.com; Obligatory Test Data
+

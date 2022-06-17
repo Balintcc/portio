@@ -1,5 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.Util;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +13,9 @@ import java.util.concurrent.TimeUnit;
 
 public class PortioTest {
     WebDriver driver;
+
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
@@ -27,10 +29,30 @@ public class PortioTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
+
     @Test
     public void AcceptTerms() {
         Util acceptBox = new Util(driver);
         acceptBox.navigate();
         acceptBox.clickButton();
+    }
+
+    @Test
+    public void paginationTest() {
+        BlogPage blogPage = new BlogPage(driver);
+        blogPage.navigate();
+
+        int actual = 0;
+
+        while (true) {
+            actual += blogPage.numberOfEntries();
+
+            if (blogPage.isLastPage()) {
+                break;
+            }
+            blogPage.clickNext();
+        }
+        Assertions.assertEquals(9, actual);
+
     }
 }
