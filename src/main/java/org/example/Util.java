@@ -14,12 +14,10 @@ public class Util {
         private final By loginBox = By.id("login");
 
 
-    public void navigate() {
+    public void acceptTermsAnd() {
         driver.navigate().to(url);
-    }
-    public void clickButton() {
         driver.findElement(acceptButton).click();
     }
 
-    }
+}
 

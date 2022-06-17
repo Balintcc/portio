@@ -33,8 +33,7 @@ public class PortioTest {
     @Test
     public void AcceptTerms() {
         Util acceptBox = new Util(driver);
-        acceptBox.navigate();
-        acceptBox.clickButton();
+        acceptBox.acceptTermsAnd();
     }
 
     @Test
