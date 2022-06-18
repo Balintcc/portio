@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Sat Jun 18 12:05:31 GMT 2022","Sat Jun 18 12:05:31 GMT 2022","200","","PortioTest","","PortioTest","paginationTest","paginationTest()",""
+"broken","Sat Jun 18 12:05:30 GMT 2022","Sat Jun 18 12:05:31 GMT 2022","748","","PortioTest","","PortioTest","AcceptTerms","AcceptTerms()",""
+"broken","Sat Jun 18 12:05:31 GMT 2022","Sat Jun 18 12:05:32 GMT 2022","178","","PortioTest","","PortioTest","RegisterNewUser","RegisterNewUser()",""
