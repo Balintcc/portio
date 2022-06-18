@@ -1,9 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.Util;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -31,9 +28,19 @@ public class PortioTest {
     }
 
     @Test
+    //@Disabled // temporally of course
     public void AcceptTerms() {
         Util acceptBox = new Util(driver);
         acceptBox.acceptTermsAnd();
+    }
+    @Test
+    //@Disabled // temporally of course
+
+    public void RegisterNewUser() throws InterruptedException {
+        RegistrationWindow registration = new RegistrationWindow(driver, driver);
+        String actual = registration.RegisterUser();
+        Assertions.assertEquals("User registered!",actual);
+
     }
 
     @Test
