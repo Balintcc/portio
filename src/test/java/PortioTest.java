@@ -51,14 +51,17 @@ public class PortioTest {
         int actual = 0;
 
         while (true) {
+
             actual += blogPage.numberOfEntries();
 
             if (blogPage.isLastPage()) {
                 break;
             }
+
             blogPage.clickNext();
+
         }
         Assertions.assertEquals(9, actual);
-
     }
+
 }

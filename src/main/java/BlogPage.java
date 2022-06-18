@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BlogPage {
     WebDriver driver;
@@ -28,14 +29,10 @@ public class BlogPage {
         return num;
     }
 
-    //check if rel="next" is visible
     public boolean isLastPage(){
-        String attr = driver.findElement(nextButton).getAttribute("style");
-        return attr.equals("display: none;");
-    }
+        return driver.findElement(nextButton).isDisplayed();
+     }
     public void clickNext() {
-        if (!isLastPage()) {
             driver.findElement(nextButton).click();
-        }
     }
 }
