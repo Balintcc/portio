@@ -13,7 +13,7 @@ public class BlogPage {
     }
     public final String url = "https://lennertamas.github.io/portio/blog/";
     //This By must be rethinked
-    public final By nextButton = By.xpath("//*[@id=\"content\"]/section/div/div/nav/ul/li[3]/a");
+    public final By nextButton = By.xpath("//*[@rel='next']");
     private final By blogEntriesVisible = By.className("blog-page__item-thumb");
 
     public void navigate() {
@@ -21,7 +21,7 @@ public class BlogPage {
     }
 
     public int numberOfEntries() {
-        int num = 0;
+        int num;
 
         List<WebElement> entries = driver.findElements(blogEntriesVisible);
         num = entries.size();
@@ -29,10 +29,18 @@ public class BlogPage {
         return num;
     }
 
-    public boolean isLastPage(){
-        return driver.findElement(nextButton).isDisplayed();
+    public boolean isLastPage() {
+        try {
+            driver.findElement(nextButton).isDisplayed();
+        }
+        catch (Exception e) {
+            return true;
+        }
+        return false;
      }
     public void clickNext() {
+        if (!isLastPage()) {
             driver.findElement(nextButton).click();
+        }
     }
 }

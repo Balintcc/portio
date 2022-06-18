@@ -28,15 +28,13 @@ public class PortioTest {
     }
 
     @Test
-    //@Disabled // temporally of course
     public void AcceptTerms() {
         Util acceptBox = new Util(driver);
         acceptBox.acceptTermsAnd();
     }
     @Test
-    //@Disabled // temporally of course
 
-    public void RegisterNewUser() throws InterruptedException {
+    public void RegisterNewUser()  {
         RegistrationWindow registration = new RegistrationWindow(driver, driver);
         String actual = registration.RegisterUser();
         Assertions.assertEquals("User registered!",actual);
@@ -53,13 +51,12 @@ public class PortioTest {
         while (true) {
 
             actual += blogPage.numberOfEntries();
+            System.out.println(actual);
 
             if (blogPage.isLastPage()) {
                 break;
             }
-
             blogPage.clickNext();
-
         }
         Assertions.assertEquals(9, actual);
     }
