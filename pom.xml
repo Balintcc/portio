@@ -78,10 +78,17 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.8.1</version>
         </dependency>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.1.1</version>
+            <version>5.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -127,12 +134,7 @@
                         <artifactId>aspectjweaver</artifactId>
                         <version>1.9.4</version>
                     </dependency>
-                    <dependency>
-                        <groupId>io.rest-assured</groupId>
-                        <artifactId>rest-assured</artifactId>
-                        <version>5.1.1</version>
-                        <scope>test</scope>
-                    </dependency>
+
                 </dependencies>
             </plugin>
             <plugin>
