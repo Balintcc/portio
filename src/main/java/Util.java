@@ -1,10 +1,8 @@
-package org.example;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Util {
-        WebDriver driver;
+        protected WebDriver driver;
         public Util(WebDriver driver) {
             this.driver = driver;
         }

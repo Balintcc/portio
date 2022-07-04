@@ -1,13 +1,14 @@
-import org.example.Util;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class RegistrationWindow extends Util {
-    WebDriver driver;
-    public RegistrationWindow(WebDriver driver, WebDriver driver1) {
+    public RegistrationWindow(WebDriver driver) {
         super(driver);
-        this.driver = driver1;
     }
 
     final static By registrationFormButton = By.id("register-form-button");
@@ -29,5 +30,31 @@ public class RegistrationWindow extends Util {
         driver.findElement(registrationSubmitButton).click();
         return driver.findElement(userRegisteredAlert).getText();
 
+    }
+    public String RegisterFromFile() {
+        acceptTermsAnd();
+        driver.findElement(registrationFormButton).click();
+        try {
+            File myObj = new File("registerUserData.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] datas = data.split(";");
+                driver.findElement(username).sendKeys(Keys.CONTROL + "a");
+                driver.findElement(username).sendKeys(datas[0]);
+                driver.findElement(password).sendKeys(Keys.CONTROL + "a");
+                driver.findElement(password).sendKeys(datas[1].trim());
+                driver.findElement(email).sendKeys(Keys.CONTROL + "a");
+                driver.findElement(email).sendKeys(datas[2].trim());
+                driver.findElement(description).sendKeys(Keys.CONTROL + "a");
+                driver.findElement(description).sendKeys(datas[3].trim());
+                driver.findElement(registrationSubmitButton).click();
+            }
+            myReader.close();
+            return driver.findElement(userRegisteredAlert).getText();
+
+        } catch (FileNotFoundException e) {
+        }
+        return ("An error occurred.");
     }
 }

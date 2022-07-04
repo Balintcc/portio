@@ -14,19 +14,16 @@ public class BlogPage {
     public final String url = "https://lennertamas.github.io/portio/blog/";
     //This By must be rethinked
     public final By nextButton = By.xpath("//*[@rel='next']");
-    private final By blogEntriesVisible = By.className("blog-page__item-thumb");
+    private final By blogEntriesVisible = By.className("blog-page__item");
 
     public void navigate() {
         driver.navigate().to(url);
     }
-
+    public List<WebElement> entries(){
+        return driver.findElements(blogEntriesVisible);
+    }
     public int numberOfEntries() {
-        int num;
-
-        List<WebElement> entries = driver.findElements(blogEntriesVisible);
-        num = entries.size();
-
-        return num;
+        return entries().size();
     }
 
     public boolean isLastPage() {
