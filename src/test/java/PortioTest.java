@@ -23,7 +23,7 @@ public class PortioTest {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-extensions");
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -32,7 +32,7 @@ public class PortioTest {
     }
 
     @Test
-    @DisplayName("1 Regisztráció")
+    @DisplayName("Regisztráció")
     public void RegisterNewUser() {
         RegistrationWindow registration = new RegistrationWindow(driver);
         String actual = registration.RegisterUser();
@@ -41,7 +41,7 @@ public class PortioTest {
     }
 
     @Test
-    @DisplayName("2 Bejelentkezés")
+    @DisplayName("Bejelentkezés")
     public void loginTest() {
         Profile profile = new Profile(driver);
         RegistrationWindow registrationWindow = new RegistrationWindow(driver);
@@ -51,19 +51,15 @@ public class PortioTest {
         Assertions.assertEquals("Logout", loginWindow.getLogoutText());
     }
     @Test
-    @DisplayName("3 Adatkezelési nyilatkozat elfogadása")
+    @DisplayName("Adatkezelési nyilatkozat elfogadása")
     public void AcceptTerms() {
         Util acceptBox = new Util(driver);
         acceptBox.acceptTermsAnd();
         Assertions.assertEquals("true", driver.manage().getCookieNamed("tandc").getValue());
     }
-    @Test
-    @DisplayName("4 Adatok listázása")
-    public void listDataTest() {
 
-    }
     @Test
-    @DisplayName("5 Több oldalas lista bejárása")
+    @DisplayName("Több oldalas lista bejárása")
     public void paginationTest() {
         BlogPage blogPage = new BlogPage(driver);
         blogPage.navigate();
@@ -84,7 +80,7 @@ public class PortioTest {
     }
 
     @Test
-    @DisplayName("6 Űj adat bevitel")
+    @DisplayName("Űj adat bevitel")
     public void inputDataTest() {
         Profile profile = new Profile(driver);
         RegistrationWindow registrationWindow = new RegistrationWindow(driver);
@@ -103,14 +99,14 @@ public class PortioTest {
 
     }
     @Test
-    @DisplayName("7 Ismételt és sorozatos adatbevitel - regisztráció file-ban található adatokkal")
+    @DisplayName("Ismételt és sorozatos adatbevitel - regisztráció file-ban található adatokkal")
     public void readFile() {
         RegistrationWindow multipleRegistration = new RegistrationWindow (driver);
         String actual = multipleRegistration.RegisterFromFile();
         System.out.println(actual);    }
 
     @Test
-    @DisplayName("8 Meglévő adat módosítás")
+    @DisplayName("Meglévő adat módosítás")
     public void alterDataTest() {
         Profile profile = new Profile(driver);
         RegistrationWindow registrationWindow = new RegistrationWindow(driver);
@@ -137,13 +133,20 @@ public class PortioTest {
     }
 
     @Test
-    @DisplayName("9 Adatok törlése")
+    @DisplayName("Adatok törlése")
     public void deleteDataTest() {
+        Profile profile = new Profile(driver);
+        RegistrationWindow registrationWindow = new RegistrationWindow(driver);
+        LoginWindow loginWindow = new LoginWindow(driver);
+        registrationWindow.RegisterUser();
+        loginWindow.login();
+        profile.deleteProfile();
+        loginWindow.login();
 
     }
 
     @Test
-    @DisplayName("10 Adatok lementése felületről")
+    @DisplayName("Adatok listázása, lementése felületről")
     public void saveDataFromPageTest() throws IOException {
         BlogPage blogPage = new BlogPage(driver);
         blogPage.navigate();
@@ -163,23 +166,23 @@ public class PortioTest {
     }
 
     @Test
-    @DisplayName("11 Kijelentkezés")
+    @DisplayName("Kijelentkezés")
     public void logoutTest() throws InterruptedException {
         RegistrationWindow registrationWindow = new RegistrationWindow(driver);
         LoginWindow loginWindow = new LoginWindow(driver);
         registrationWindow.RegisterUser();
         loginWindow.login();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         loginWindow.logout();
         Assertions.assertThrows(Exception.class, () -> System.out.println(loginWindow.getLogoutText()));
 
     }
 
-    @AfterEach
-    public void closeChrome() {
-
-        driver.manage().deleteAllCookies();
-        driver.quit();
-    }
+//    @AfterEach
+//    public void closeChrome() {
+//
+//        driver.manage().deleteAllCookies();
+//        driver.quit();
+//    }
 
 }

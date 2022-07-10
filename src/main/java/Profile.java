@@ -31,4 +31,9 @@ public class Profile extends Util{
         return driver.findElement(editAlert).getText();
 
     }
+
+    public void deleteProfile() {
+        driver.findElement(profileButton).click();
+
+    }
 }
